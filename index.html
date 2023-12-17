@@ -14,24 +14,27 @@
   <body>
     <div class="content">
       <img src="#" />
-      <button class="generate">NEW GIF</button>
+
+      <form id="gifForm">
+        <input
+          type="text"
+          name="keyword"
+          placeholder="Keyword"
+          class="keyword"
+          required
+        />
+        <button type="submit" class="submit-btn">NEW GIF</button>
+      </form>
     </div>
     <script>
       const img = document.querySelector("img");
-      const button = document.querySelector("button");
-      fetch(
-        "https://api.giphy.com/v1/gifs/translate?api_key=5UFB4zb6bpQ2NZey3dW4YcUwGG5ogcOR&s=smile",
-        { mode: "cors" }
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (response) {
-          img.src = response.data.images.original.url;
-        });
-      button.addEventListener("click", function () {
+      const button = document.querySelector(".generate");
+      let keywordInput = document.querySelector(".keyword");
+      const gifForm = document.getElementById("gifForm");
+
+      function fetchGif(keyword) {
         fetch(
-          "https://api.giphy.com/v1/gifs/translate?api_key=5UFB4zb6bpQ2NZey3dW4YcUwGG5ogcOR&s=smile",
+          `https://api.giphy.com/v1/gifs/translate?api_key=5UFB4zb6bpQ2NZey3dW4YcUwGG5ogcOR&s=${keyword}`,
           { mode: "cors" }
         )
           .then(function (response) {
@@ -40,6 +43,18 @@
           .then(function (response) {
             img.src = response.data.images.original.url;
           });
+      }
+
+      // Initial fetch
+      fetchGif("smile");
+
+      gifForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const keyword = keywordInput.value;
+        fetchGif(keyword);
+      });
+      button.addEventListener("click", function () {
+        fetchGif(keyword);
       });
     </script>
   </body>

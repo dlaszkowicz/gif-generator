@@ -1,5 +1,5 @@
 body {
-  background-color: aliceblue;
+  background-color: aquamarine;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +10,15 @@ body {
   display: flex;
   flex-direction: column;
 }
-.generate {
-  margin-top: 20px;
+.generate,
+.submit-btn {
   border-radius: 15px;
   background-color: aqua;
   border: none;
   padding: 0.5rem 1rem;
+}
+.generate {
+  margin-top: 20px;
 }
 button:hover {
   background-color: rgb(12, 190, 183);
@@ -29,4 +32,13 @@ img {
     width: auto;
     height: 1000px;
   }
+}
+form input {
+  margin-bottom: 20px;
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
